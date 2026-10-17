@@ -1,11 +1,15 @@
 # Centauri Carbon 2 Community Firmware
 
+[English](README.md) · [Português (BR)](README.pt-BR.md)
+
+This fork adds Brazilian Portuguese to the CC2 Control interface and README. Select **Português (BR)** in **Settings → Appearance** after building this fork. Existing upstream release binaries do not include this translation.
+
 Community firmware, local printer control and reproducible build tools for the **ELEGOO Centauri Carbon 2**, maintained by **Neme77**.
 
 > Independent community project. Not affiliated with, endorsed by or supported
 > by ELEGOO.
 
-<p align="center"><strong>Local control · Canvas · OrcaSlicer sync · Nine app languages · Six themes</strong></p>
+<p align="center"><strong>Local control · Canvas · OrcaSlicer sync · Ten app languages · Six themes</strong></p>
 
 <p align="center">
   <a href="docs/FIRST_RUN.md">First installation</a> · <a href="docs/ORCASLICER.md">OrcaSlicer &amp; Canvas</a> · <a href="docs/SCREENSHOTS.md">Screenshots</a> · <a href="docs/CONTRIBUTORS.md">Community credits</a>

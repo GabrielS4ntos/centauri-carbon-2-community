@@ -13,11 +13,21 @@ export const LANGUAGE_NAMES: Record<string, string> = {
   cs: 'Čeština',
   hu: 'Magyar',
   es: 'Español',
+  'pt-BR': 'Português (BR)',
 }
 
-// The browser's first language we ship (fr-CA -> fr), else English.
+// Prefer an exact locale, then its base language (fr-CA -> fr).
+// Brazilian Portuguese is the Portuguese variant we ship (pt -> pt-BR).
 export const detectLanguage = () =>
-  navigator.languages?.map(l => l.slice(0, 2).toLowerCase()).find(l => l in LANGUAGE_NAMES) ?? 'en'
+  navigator.languages
+    ?.map(language => {
+      const code = language.toLowerCase()
+      const exact = Object.keys(LANGUAGE_NAMES).find(key => key.toLowerCase() === code)
+      if (exact) return exact
+      const base = code.split('-')[0]
+      return base === 'pt' ? 'pt-BR' : base in LANGUAGE_NAMES ? base : undefined
+    })
+    .find(Boolean) ?? 'en'
 
 // Every UI string is an identifier from public/locales/en.json (the source language, bundled); other locales load on demand.
 export type Key = keyof typeof en

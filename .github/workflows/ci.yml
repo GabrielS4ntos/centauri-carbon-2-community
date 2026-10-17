@@ -104,6 +104,9 @@ jobs:
       - name: Spanish language selection, persistence and mobile layouts
         run: npm run test:spanish
 
+      - name: Brazilian Portuguese selection, persistence and regional detection
+        run: npm run test:portuguese
+
       - name: Signed update panel confirmations and mobile layouts
         run: npm run test:updates
 

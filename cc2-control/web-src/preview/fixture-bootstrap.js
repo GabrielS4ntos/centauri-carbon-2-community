@@ -32,7 +32,7 @@
     let path = new URL(raw, location.href).pathname
     const api = path.indexOf('/api/')
     if (api >= 0) path = path.slice(api)
-    const locale = path.match(/\/(?:locales|i18n)\/(\w+)\.json$/)
+    const locale = path.match(/\/(?:locales|i18n)\/([a-z]{2,5}(?:-[A-Z]{2})?)\.json$/)
     if (locale) return reply(window.__CC2_PREVIEW_LOCALES[locale[1]] || window.__CC2_PREVIEW_LOCALES.en)
     if (path === '/api/preferences') {
       if (options.method === 'PUT') {

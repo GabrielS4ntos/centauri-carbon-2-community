@@ -139,7 +139,7 @@ with tempfile.TemporaryDirectory(prefix="cc2-preferences-") as temporary:
             assert json.load(response)["quick_actions"] == shortcuts
         assert all(action in preferences.read_text() for action in shortcuts)
         # The new shipped languages persist on the printer like existing ones.
-        for language in ("pl", "cs"):
+        for language in ("pl", "cs", "pt-BR"):
             update = urllib.request.Request(endpoint, data=json.dumps({"language": language}).encode(), method="PUT",
                 headers={"X-CC2-Request": "1", "Content-Type": "application/json"})
             with urllib.request.urlopen(update, timeout=1) as response:
@@ -172,7 +172,9 @@ with tempfile.TemporaryDirectory(prefix="cc2-preferences-") as temporary:
         for _ in range(30):
             try:
                 with urllib.request.urlopen(endpoint, timeout=1) as response:
-                    assert json.load(response)["camera_persistent"] is True
+                    restored = json.load(response)
+                    assert restored["camera_persistent"] is True
+                    assert restored["language"] == "pt-BR"
                 break
             except OSError: time.sleep(0.1)
         else: raise AssertionError("camera preference not restored after restart")
